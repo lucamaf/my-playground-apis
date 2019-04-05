@@ -56,10 +56,7 @@
                     "405": {
                         "description": "Invalid input"
                     }
-                },
-                "security": [{
-                    "api_key": []
-                }]
+                }
             },
             "put": {
                 "tags": ["pet"],
@@ -87,10 +84,7 @@
                     "405": {
                         "description": "Validation exception"
                     }
-                },
-                "security": [{
-                    "api_key": []
-                }]
+                }
             }
         },
         "/pet/findByStatus": {
@@ -126,10 +120,7 @@
                     "400": {
                         "description": "Invalid status value"
                     }
-                },
-                "security": [{
-                    "api_key": []
-                }]
+                }
             }
         },
         "/pet/findByTags": {
@@ -164,9 +155,6 @@
                         "description": "Invalid tag value"
                     }
                 },
-                "security": [{
-                    "api_key": []
-                }],
                 "deprecated": true
             }
         },
@@ -198,10 +186,7 @@
                     "404": {
                         "description": "Pet not found"
                     }
-                },
-                "security": [{
-                    "api_key": []
-                }]
+                }
             },
             "post": {
                 "tags": ["pet"],
@@ -234,10 +219,7 @@
                     "405": {
                         "description": "Invalid input"
                     }
-                },
-                "security": [{
-                    "api_key": []
-                }]
+                }
             },
             "delete": {
                 "tags": ["pet"],
@@ -265,10 +247,7 @@
                     "404": {
                         "description": "Pet not found"
                     }
-                },
-                "security": [{
-                    "api_key": []
-                }]
+                }
             }
         },
         "/pet/{petId}/uploadImage": {
@@ -306,10 +285,7 @@
                             "$ref": "#/definitions/ApiResponse"
                         }
                     }
-                },
-                "security": [{
-                    "api_key": []
-                }]
+                }
             }
         },
         "/store/inventory": {
@@ -331,10 +307,7 @@
                             }
                         }
                     }
-                },
-                "security": [{
-                    "api_key": []
-                }]
+                }
             }
         },
         "/store/order": {
@@ -647,6 +620,9 @@
             "name": "api_key",
             "in": "header"
         }
+    },
+    "security": {
+        "api_key": []
     },
     "definitions": {
         "Order": {
