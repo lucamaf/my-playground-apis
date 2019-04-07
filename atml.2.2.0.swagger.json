@@ -6,7 +6,7 @@
       "version": "2.2"
   },
   "host": "developer.openbanking.org.uk",
-  "basePath": "/open-banking/v2.2",
+  "basePath": "/",
   "schemes": [
       "https"
   ],
