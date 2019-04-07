@@ -3,7 +3,7 @@
   "info": {
       "title": "Open Data API - ATM",
       "description": "Latest Swagger specification for OpenData ATM Locator",
-      "version": "v2.2"
+      "version": "2.2"
   },
   "host": "developer.openbanking.org.uk",
   "basePath": "/open-banking/v2.2",
@@ -479,6 +479,24 @@
           }
       }
   },
+  "securityDefinitions": {
+    "api-key": {
+        "type": "apiKey",
+        "name": "api-key",
+        "in": "header"
+    }
+   },
+   "security": [
+     {
+        "api-key": []
+     }
+    ],
+   "tags": [
+    {
+        "name": "ATM",
+        "description": "Endpoint for getting ATM data"
+    }
+   ],
   "definitions": {
       "ATM": {
           "description": "Environment of the ATM",
@@ -767,23 +785,5 @@
               }
           }
       }
-  },
-  "securityDefinitions": {
-      "api-key": {
-          "type": "apiKey",
-          "name": "api-key",
-          "in": "header"
-      }
-  },
-  "security": [
-      {
-          "api-key": []
-      }
-  ],
-  "tags": [
-      {
-          "name": "ATM",
-          "description": "Endpoint for getting ATM data"
-      }
-  ]
+  }
 }

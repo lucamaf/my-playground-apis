@@ -1,0 +1,6 @@
+- hosts: threescale
+  gather_facts: no
+  vars:
+    threescale_cicd_openapi_file: 'atml.2.2.0.swagger.json'
+  roles:
+  - nmasse-itix.threescale-cicd
