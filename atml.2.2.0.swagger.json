@@ -1,0 +1,789 @@
+{
+  "swagger": "2.0",
+  "info": {
+      "title": "Open Data API - ATM",
+      "description": "Latest Swagger specification for OpenData ATM Locator",
+      "version": "v2.2"
+  },
+  "host": "developer.openbanking.org.uk",
+  "basePath": "/open-banking/v2.2",
+  "schemes": [
+      "https"
+  ],
+  "produces": [
+      "application/prs.openbanking.opendata.v2.2+json",
+      "application/json"
+  ],
+  "paths": {
+      "/atms": {
+          "get": {
+              "tags": [
+                  "ATM"
+              ],
+              "description": "Gets a list of all `ATM` objects.",
+              "parameters": [
+                  {
+                      "name": "If-Modified-Since",
+                      "in": "header",
+                      "description": "Used for conditional request, to retrieve data only if modified since a given date",
+                      "required": false,
+                      "type": "string"
+                  },
+                  {
+                      "name": "If-None-Match",
+                      "in": "header",
+                      "description": "Used for conditional request, to retrieve data only if the given Etag value does not match",
+                      "required": false,
+                      "type": "string"
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "Successful response with a list of `ATM` data",
+                      "schema": {
+                          "$ref": "#/definitions/ATM"
+                      },
+                      "headers": {
+                          "Strict-Transport-Security": {
+                              "description": "HTTPS strict transport security header",
+                              "type": "string",
+                              "default": "max-age=31536000"
+                          },
+                          "Etag": {
+                              "description": "A unique ID identifying whether this resource has changed",
+                              "type": "string"
+                          },
+                          "Cache-Control": {
+                              "description": "Describes how long this response can be cached",
+                              "type": "string",
+                              "default": "max-age=28800"
+                          },
+                          "X-Frame-Options": {
+                              "description": "Prevent this request from being loaded in any iframes",
+                              "type": "string",
+                              "default": "DENY"
+                          },
+                          "X-Content-Type-Options": {
+                              "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                              "type": "string",
+                              "default": "nosniff"
+                          }
+                      },
+                      "examples": {
+                          "application/json": {
+                              "data": [
+                                  {
+                                      "Brand": [
+                                          {
+                                              "BrandName": "UK",
+                                              "ATM": [
+                                                  {
+                                                      "Identification": "AB461881",
+                                                      "SupportedLanguages": [
+                                                          "en",
+                                                          "fr",
+                                                          "es",
+                                                          "de"
+                                                      ],
+                                                      "ATMServices": [
+                                                          "CashWithdrawal",
+                                                          "PINChange",
+                                                          "MobilePhoneTopUp",
+                                                          "Balance",
+                                                          "MiniStatement",
+                                                          "CharityDonation"
+                                                      ],
+                                                      "SupportedCurrencies": [
+                                                          "GBP"
+                                                      ],
+                                                      "MinimumPossibleAmount": "5",
+                                                      "Branch": {
+                                                          "Identification": "402529"
+                                                      },
+                                                      "Location": {
+                                                          "Site": {
+                                                              "Name": "ILKESTON I1"
+                                                          },
+                                                          "PostalAddress": {
+                                                              "StreetName": "63 Bath Street",
+                                                              "TownName": "ILKESTON",
+                                                              "Country": "GB",
+                                                              "PostCode": "DE7 8DD",
+                                                              "GeoLocation": {
+                                                                  "GeographicCoordinates": {
+                                                                      "Latitude": "52.9740105",
+                                                                      "Longitude": "-1.3090999"
+                                                                  }
+                                                              }
+                                                          }
+                                                      }
+                                                  }
+                                              ]
+                                          }
+                                      ]
+                                  }
+                              ]
+                          }
+                      }
+                  },
+                  "400": {
+                      "description": "You have sent a request which could not be understood.",
+                      "schema": {
+                          "title": "400 Error object",
+                          "required": [
+                              "status",
+                              "title",
+                              "description"
+                          ],
+                          "type": "object",
+                          "properties": {
+                              "status": {
+                                  "enum": [
+                                      "400"
+                                  ],
+                                  "type": "string"
+                              },
+                              "title": {
+                                  "enum": [
+                                      "Bad request"
+                                  ],
+                                  "type": "string"
+                              },
+                              "description": {
+                                  "enum": [
+                                      "You have sent a request which could not be understood."
+                                  ],
+                                  "type": "string"
+                              }
+                          },
+                          "additionalProperties": false
+                      },
+                      "headers": {
+                          "Strict-Transport-Security": {
+                              "description": "HTTPS strict transport security header",
+                              "type": "string"
+                          },
+                          "X-Frame-Options": {
+                              "description": "Prevent this request from being loaded in any iframes",
+                              "type": "string",
+                              "default": "DENY"
+                          },
+                          "X-Content-Type-Options": {
+                              "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                              "type": "string",
+                              "default": "nosniff"
+                          },
+                          "Status Code": {
+                              "description": "The HTTP status code defining the error",
+                              "type": "integer",
+                              "default": 400
+                          }
+                      }
+                  },
+                  "408": {
+                      "description": "Your client has failed to submit a request, and a timeout has occurred.",
+                      "schema": {
+                          "title": "408 Error object",
+                          "required": [
+                              "status",
+                              "title",
+                              "description"
+                          ],
+                          "type": "object",
+                          "properties": {
+                              "status": {
+                                  "enum": [
+                                      "408"
+                                  ],
+                                  "type": "string"
+                              },
+                              "title": {
+                                  "enum": [
+                                      "Client timeout"
+                                  ],
+                                  "type": "string"
+                              },
+                              "description": {
+                                  "enum": [
+                                      "Your client has failed to submit a request, and a timeout has occurred."
+                                  ],
+                                  "type": "string"
+                              }
+                          },
+                          "additionalProperties": false
+                      },
+                      "headers": {
+                          "Strict-Transport-Security": {
+                              "description": "HTTPS strict transport security header",
+                              "type": "string"
+                          },
+                          "X-Frame-Options": {
+                              "description": "Prevent this request from being loaded in any iframes",
+                              "type": "string",
+                              "default": "DENY"
+                          },
+                          "X-Content-Type-Options": {
+                              "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                              "type": "string",
+                              "default": "nosniff"
+                          },
+                          "Status Code": {
+                              "description": "The HTTP status code defining the error",
+                              "type": "integer",
+                              "default": 400
+                          }
+                      }
+                  },
+                  "429": {
+                      "description": "You have requested this resource too often. Slow down.",
+                      "schema": {
+                          "title": "429 Error object",
+                          "required": [
+                              "status",
+                              "title",
+                              "description"
+                          ],
+                          "type": "object",
+                          "properties": {
+                              "status": {
+                                  "enum": [
+                                      "429"
+                                  ],
+                                  "type": "string"
+                              },
+                              "title": {
+                                  "enum": [
+                                      "Too many requests"
+                                  ],
+                                  "type": "string"
+                              },
+                              "description": {
+                                  "enum": [
+                                      "You have requested this resource too often. Slow down."
+                                  ],
+                                  "type": "string"
+                              }
+                          },
+                          "additionalProperties": false
+                      },
+                      "headers": {
+                          "Strict-Transport-Security": {
+                              "description": "HTTPS strict transport security header",
+                              "type": "string"
+                          },
+                          "X-Frame-Options": {
+                              "description": "Prevent this request from being loaded in any iframes",
+                              "type": "string",
+                              "default": "DENY"
+                          },
+                          "X-Content-Type-Options": {
+                              "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                              "type": "string",
+                              "default": "nosniff"
+                          },
+                          "Status Code": {
+                              "description": "The HTTP status code defining the error",
+                              "type": "integer",
+                              "default": 400
+                          }
+                      }
+                  },
+                  "500": {
+                      "description": "An error occurred on the server. No further information is available.",
+                      "schema": {
+                          "title": "500 Error object",
+                          "required": [
+                              "status",
+                              "title",
+                              "description"
+                          ],
+                          "type": "object",
+                          "properties": {
+                              "status": {
+                                  "enum": [
+                                      "500"
+                                  ],
+                                  "type": "string"
+                              },
+                              "title": {
+                                  "enum": [
+                                      "Internal server error"
+                                  ],
+                                  "type": "string"
+                              },
+                              "description": {
+                                  "enum": [
+                                      "An error occurred on the server. No further information is available."
+                                  ],
+                                  "type": "string"
+                              }
+                          },
+                          "additionalProperties": false
+                      },
+                      "headers": {
+                          "Strict-Transport-Security": {
+                              "description": "HTTPS strict transport security header",
+                              "type": "string"
+                          },
+                          "X-Frame-Options": {
+                              "description": "Prevent this request from being loaded in any iframes",
+                              "type": "string",
+                              "default": "DENY"
+                          },
+                          "X-Content-Type-Options": {
+                              "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                              "type": "string",
+                              "default": "nosniff"
+                          },
+                          "Status Code": {
+                              "description": "The HTTP status code defining the error",
+                              "type": "integer",
+                              "default": 400
+                          }
+                      }
+                  },
+                  "503": {
+                      "description": "The service is temporarily unavailable.",
+                      "schema": {
+                          "title": "503 Error object",
+                          "required": [
+                              "status",
+                              "title",
+                              "description"
+                          ],
+                          "type": "object",
+                          "properties": {
+                              "status": {
+                                  "enum": [
+                                      "503"
+                                  ],
+                                  "type": "string"
+                              },
+                              "title": {
+                                  "enum": [
+                                      "Service temporarily unavailable"
+                                  ],
+                                  "type": "string"
+                              },
+                              "description": {
+                                  "enum": [
+                                      "The service is temporarily unavailable."
+                                  ],
+                                  "type": "string"
+                              }
+                          },
+                          "additionalProperties": false
+                      },
+                      "headers": {
+                          "Strict-Transport-Security": {
+                              "description": "HTTPS strict transport security header",
+                              "type": "string"
+                          },
+                          "X-Frame-Options": {
+                              "description": "Prevent this request from being loaded in any iframes",
+                              "type": "string",
+                              "default": "DENY"
+                          },
+                          "X-Content-Type-Options": {
+                              "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                              "type": "string",
+                              "default": "nosniff"
+                          },
+                          "Status Code": {
+                              "description": "The HTTP status code defining the error",
+                              "type": "integer",
+                              "default": 400
+                          }
+                      }
+                  },
+                  "default": {
+                      "description": "A standard error response.",
+                      "schema": {
+                          "title": "Error object",
+                          "required": [
+                              "status",
+                              "title",
+                              "description"
+                          ],
+                          "type": "object",
+                          "properties": {
+                              "status": {
+                                  "description": "This corresponds to the HTTP status code",
+                                  "type": "string"
+                              },
+                              "title": {
+                                  "description": "A short title of the type of error",
+                                  "type": "string"
+                              },
+                              "description": {
+                                  "description": "Further details describing the error",
+                                  "type": "string"
+                              }
+                          },
+                          "additionalProperties": false
+                      },
+                      "headers": {
+                          "Strict-Transport-Security": {
+                              "description": "HTTPS strict transport security header",
+                              "type": "string"
+                          },
+                          "X-Frame-Options": {
+                              "description": "Prevent this request from being loaded in any iframes",
+                              "type": "string",
+                              "default": "DENY"
+                          },
+                          "X-Content-Type-Options": {
+                              "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                              "type": "string",
+                              "default": "nosniff"
+                          },
+                          "Status Code": {
+                              "description": "The HTTP status code defining the error",
+                              "type": "integer",
+                              "default": 400
+                          }
+                      }
+                  }
+              }
+          },
+          "head": {
+              "tags": [
+                  "ATM"
+              ],
+              "description": "Gets header information on the current set of `ATM` data",
+              "parameters": [
+                  {
+                      "name": "If-Modified-Since",
+                      "in": "header",
+                      "description": "Used for conditional request, to retrieve data only if modified since a given date",
+                      "required": false,
+                      "type": "string"
+                  },
+                  {
+                      "name": "If-None-Match",
+                      "in": "header",
+                      "description": "Used for conditional request, to retrieve data only if the given Etag value does not match",
+                      "required": false,
+                      "type": "string"
+                  }
+              ],
+              "responses": {
+                  "default": {
+                      "description": "No response",
+                      "schema": {
+                          "title": "No response",
+                          "type": "object"
+                      }
+                  }
+              }
+          }
+      }
+  },
+  "definitions": {
+      "ATM": {
+          "description": "Environment of the ATM",
+          "required": [
+              "Brand"
+          ],
+          "type": "object",
+          "properties": {
+              "Brand": {
+                  "$ref": "#/definitions/Brand"
+              }
+          }
+      },
+      "Identification": {
+          "type": "object"
+      },
+      "SupportedCurrencies": {
+          "type": "object"
+      },
+      "Location": {
+          "required": [
+              "PostalAddress"
+          ],
+          "type": "object",
+          "properties": {
+              "LocationCategory": {
+                  "$ref": "#/definitions/LocationCategory"
+              },
+              "OtherLocationCategory": {
+                  "$ref": "#/definitions/OtherLocationCategory"
+              },
+              "Site": {
+                  "$ref": "#/definitions/Site"
+              },
+              "PostalAddress": {
+                  "$ref": "#/definitions/PostalAddress"
+              }
+          }
+      },
+      "SupportedLanguages": {
+          "type": "object"
+      },
+      "ATMServices": {
+          "type": "object"
+      },
+      "Accessibility": {
+          "type": "object"
+      },
+      "Access24HoursIndicator": {
+          "type": "object"
+      },
+      "MinimumPossibleAmount": {
+          "type": "object"
+      },
+      "Note": {
+          "type": "object"
+      },
+      "Code": {
+          "type": "object"
+      },
+      "Name": {
+          "type": "object"
+      },
+      "Description": {
+          "type": "object"
+      },
+      "OtherAccessibility": {
+          "required": [
+              "Name",
+              "Description"
+          ],
+          "type": "object",
+          "properties": {
+              "Code": {
+                  "$ref": "#/definitions/Code"
+              },
+              "Name": {
+                  "$ref": "#/definitions/Name"
+              },
+              "Description": {
+                  "$ref": "#/definitions/Description"
+              }
+          }
+      },
+      "OtherATMServices": {
+          "required": [
+              "Name",
+              "Description"
+          ],
+          "type": "object",
+          "properties": {
+              "Code": {
+                  "$ref": "#/definitions/Code"
+              },
+              "Name": {
+                  "$ref": "#/definitions/Name"
+              },
+              "Description": {
+                  "$ref": "#/definitions/Description"
+              }
+          }
+      },
+      "Branch": {
+          "type": "object",
+          "properties": {
+              "Identification": {
+                  "$ref": "#/definitions/Identification"
+              }
+          }
+      },
+      "LocationCategory": {
+          "type": "object"
+      },
+      "OtherLocationCategory": {
+          "required": [
+              "Name",
+              "Description"
+          ],
+          "type": "object",
+          "properties": {
+              "Code": {
+                  "$ref": "#/definitions/Code"
+              },
+              "Name": {
+                  "$ref": "#/definitions/Name"
+              },
+              "Description": {
+                  "$ref": "#/definitions/Description"
+              }
+          }
+      },
+      "Site": {
+          "type": "object",
+          "properties": {
+              "Identification": {
+                  "$ref": "#/definitions/Identification"
+              },
+              "Name": {
+                  "$ref": "#/definitions/Name"
+              }
+          }
+      },
+      "AddressLine": {
+          "type": "object"
+      },
+      "BuildingNumber": {
+          "type": "object"
+      },
+      "StreetName": {
+          "type": "object"
+      },
+      "TownName": {
+          "type": "object"
+      },
+      "CountrySubDivision": {
+          "type": "object"
+      },
+      "Country": {
+          "type": "object"
+      },
+      "PostCode": {
+          "type": "object"
+      },
+      "Latitude": {
+          "type": "object"
+      },
+      "GeographicCoordinates": {
+          "required": [
+              "Latitude",
+              "Longitude"
+          ],
+          "type": "object",
+          "properties": {
+              "Latitude": {
+                  "$ref": "#/definitions/Latitude"
+              },
+              "Longitude": {
+                  "$ref": "#/definitions/Longitude"
+              }
+          }
+      },
+      "Longitude": {
+          "type": "object"
+      },
+      "GeoLocation": {
+          "required": [
+              "GeographicCoordinates"
+          ],
+          "type": "object",
+          "properties": {
+              "GeographicCoordinates": {
+                  "$ref": "#/definitions/GeographicCoordinates"
+              }
+          }
+      },
+      "PostalAddress": {
+          "type": "object",
+          "properties": {
+              "AddressLine": {
+                  "$ref": "#/definitions/AddressLine"
+              },
+              "BuildingNumber": {
+                  "$ref": "#/definitions/BuildingNumber"
+              },
+              "StreetName": {
+                  "$ref": "#/definitions/StreetName"
+              },
+              "TownName": {
+                  "$ref": "#/definitions/TownName"
+              },
+              "CountrySubDivision": {
+                  "$ref": "#/definitions/CountrySubDivision"
+              },
+              "Country": {
+                  "$ref": "#/definitions/Country"
+              },
+              "PostCode": {
+                  "$ref": "#/definitions/PostCode"
+              },
+              "GeoLocation": {
+                  "$ref": "#/definitions/GeoLocation"
+              }
+          }
+      },
+      "ATM-info": {
+          "required": [
+              "Identification",
+              "SupportedCurrencies",
+              "Location"
+          ],
+          "type": "object",
+          "properties": {
+              "Identification": {
+                  "$ref": "#/definitions/Identification"
+              },
+              "SupportedCurrencies": {
+                  "$ref": "#/definitions/SupportedCurrencies"
+              },
+              "Location": {
+                  "$ref": "#/definitions/Location"
+              },
+              "SupportedLanguages": {
+                  "$ref": "#/definitions/SupportedLanguages"
+              },
+              "ATMServices": {
+                  "$ref": "#/definitions/ATMServices"
+              },
+              "Accessibility": {
+                  "$ref": "#/definitions/Accessibility"
+              },
+              "Access24HoursIndicator": {
+                  "$ref": "#/definitions/Access24HoursIndicator"
+              },
+              "MinimumPossibleAmount": {
+                  "$ref": "#/definitions/MinimumPossibleAmount"
+              },
+              "Note": {
+                  "$ref": "#/definitions/Note"
+              },
+              "OtherAccessibility": {
+                  "$ref": "#/definitions/OtherAccessibility"
+              },
+              "OtherATMServices": {
+                  "$ref": "#/definitions/OtherATMServices"
+              },
+              "Branch": {
+                  "$ref": "#/definitions/Branch"
+              }
+          }
+      },
+      "BrandName": {
+          "type": "object"
+      },
+      "Brand": {
+          "required": [
+              "BrandName",
+              "ATM"
+          ],
+          "type": "object",
+          "properties": {
+              "BrandName": {
+                  "$ref": "#/definitions/BrandName"
+              },
+              "ATM": {
+                  "$ref": "#/definitions/ATM-info"
+              }
+          }
+      }
+  },
+  "securityDefinitions": {
+      "api-key": {
+          "type": "apiKey",
+          "name": "api-key",
+          "in": "header"
+      }
+  },
+  "security": [
+      {
+          "api-key": []
+      }
+  ],
+  "tags": [
+      {
+          "name": "ATM",
+          "description": "Endpoint for getting ATM data"
+      }
+  ]
+}

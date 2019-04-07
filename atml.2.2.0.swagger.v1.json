@@ -1,0 +1,540 @@
+openapi: 3.0.1
+info:
+  title: Open Data API - ATM
+  description: Latest Swagger specification for OpenData ATM Locator
+  version: v2.2
+servers:
+- url: https://developer.openbanking.org.uk/open-banking/v2.2
+security:
+- api-key: []
+tags:
+- name: ATM
+  description: Endpoint for getting ATM data
+paths:
+  /atms:
+    get:
+      tags:
+      - ATM
+      description: Gets a list of all `ATM` objects.
+      parameters:
+      - name: If-Modified-Since
+        in: header
+        description: Used for conditional request, to retrieve data only if modified
+          since a given date
+        schema:
+          type: string
+      - name: If-None-Match
+        in: header
+        description: Used for conditional request, to retrieve data only if the given
+          Etag value does not match
+        schema:
+          type: string
+      responses:
+        200:
+          description: Successful response with a list of `ATM` data
+          headers:
+            X-Frame-Options:
+              description: Prevent this request from being loaded in any iframes
+              schema:
+                type: string
+                default: DENY
+            Strict-Transport-Security:
+              description: HTTPS strict transport security header
+              schema:
+                type: string
+                default: max-age=31536000
+            Etag:
+              description: A unique ID identifying whether this resource has changed
+              schema:
+                type: string
+            Cache-Control:
+              description: Describes how long this response can be cached
+              schema:
+                type: string
+                default: max-age=28800
+            X-Content-Type-Options:
+              description: Ensures each page has a content type and prevents browsers
+                from doing MIME type sniffing
+              schema:
+                type: string
+                default: nosniff
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                $ref: '#/components/schemas/ATM'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ATM'
+              example:
+                data:
+                - Brand:
+                  - BrandName: UK
+                    ATM:
+                    - Identification: AB461881
+                      SupportedLanguages:
+                      - en
+                      - fr
+                      - es
+                      - de
+                      ATMServices:
+                      - CashWithdrawal
+                      - PINChange
+                      - MobilePhoneTopUp
+                      - Balance
+                      - MiniStatement
+                      - CharityDonation
+                      SupportedCurrencies:
+                      - GBP
+                      MinimumPossibleAmount: "5"
+                      Branch:
+                        Identification: "402529"
+                      Location:
+                        Site:
+                          Name: ILKESTON I1
+                        PostalAddress:
+                          StreetName: 63 Bath Street
+                          TownName: ILKESTON
+                          Country: GB
+                          PostCode: DE7 8DD
+                          GeoLocation:
+                            GeographicCoordinates:
+                              Latitude: "52.9740105"
+                              Longitude: -1.3090999
+        400:
+          description: You have sent a request which could not be understood.
+          headers:
+            X-Frame-Options:
+              description: Prevent this request from being loaded in any iframes
+              schema:
+                type: string
+                default: DENY
+            Strict-Transport-Security:
+              description: HTTPS strict transport security header
+              schema:
+                type: string
+            X-Content-Type-Options:
+              description: Ensures each page has a content type and prevents browsers
+                from doing MIME type sniffing
+              schema:
+                type: string
+                default: nosniff
+            Status Code:
+              description: The HTTP status code defining the error
+              schema:
+                type: integer
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                title: 400 Error object
+                type: object
+                additionalProperties:
+                  type: object
+            application/json:
+              schema:
+                title: 400 Error object
+                type: object
+                additionalProperties:
+                  type: object
+        408:
+          description: Your client has failed to submit a request, and a timeout has
+            occurred.
+          headers:
+            X-Frame-Options:
+              description: Prevent this request from being loaded in any iframes
+              schema:
+                type: string
+                default: DENY
+            Strict-Transport-Security:
+              description: HTTPS strict transport security header
+              schema:
+                type: string
+            X-Content-Type-Options:
+              description: Ensures each page has a content type and prevents browsers
+                from doing MIME type sniffing
+              schema:
+                type: string
+                default: nosniff
+            Status Code:
+              description: The HTTP status code defining the error
+              schema:
+                type: integer
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                title: 408 Error object
+                type: object
+                additionalProperties:
+                  type: object
+            application/json:
+              schema:
+                title: 408 Error object
+                type: object
+                additionalProperties:
+                  type: object
+        429:
+          description: You have requested this resource too often. Slow down.
+          headers:
+            X-Frame-Options:
+              description: Prevent this request from being loaded in any iframes
+              schema:
+                type: string
+                default: DENY
+            Strict-Transport-Security:
+              description: HTTPS strict transport security header
+              schema:
+                type: string
+            X-Content-Type-Options:
+              description: Ensures each page has a content type and prevents browsers
+                from doing MIME type sniffing
+              schema:
+                type: string
+                default: nosniff
+            Status Code:
+              description: The HTTP status code defining the error
+              schema:
+                type: integer
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                title: 429 Error object
+                type: object
+                additionalProperties:
+                  type: object
+            application/json:
+              schema:
+                title: 429 Error object
+                type: object
+                additionalProperties:
+                  type: object
+        500:
+          description: An error occurred on the server. No further information is
+            available.
+          headers:
+            X-Frame-Options:
+              description: Prevent this request from being loaded in any iframes
+              schema:
+                type: string
+                default: DENY
+            Strict-Transport-Security:
+              description: HTTPS strict transport security header
+              schema:
+                type: string
+            X-Content-Type-Options:
+              description: Ensures each page has a content type and prevents browsers
+                from doing MIME type sniffing
+              schema:
+                type: string
+                default: nosniff
+            Status Code:
+              description: The HTTP status code defining the error
+              schema:
+                type: integer
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                title: 500 Error object
+                type: object
+                additionalProperties:
+                  type: object
+            application/json:
+              schema:
+                title: 500 Error object
+                type: object
+                additionalProperties:
+                  type: object
+        503:
+          description: The service is temporarily unavailable.
+          headers:
+            X-Frame-Options:
+              description: Prevent this request from being loaded in any iframes
+              schema:
+                type: string
+                default: DENY
+            Strict-Transport-Security:
+              description: HTTPS strict transport security header
+              schema:
+                type: string
+            X-Content-Type-Options:
+              description: Ensures each page has a content type and prevents browsers
+                from doing MIME type sniffing
+              schema:
+                type: string
+                default: nosniff
+            Status Code:
+              description: The HTTP status code defining the error
+              schema:
+                type: integer
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                title: 503 Error object
+                type: object
+                additionalProperties:
+                  type: object
+            application/json:
+              schema:
+                title: 503 Error object
+                type: object
+                additionalProperties:
+                  type: object
+        default:
+          description: A standard error response.
+          headers:
+            X-Frame-Options:
+              description: Prevent this request from being loaded in any iframes
+              schema:
+                type: string
+                default: DENY
+            Strict-Transport-Security:
+              description: HTTPS strict transport security header
+              schema:
+                type: string
+            X-Content-Type-Options:
+              description: Ensures each page has a content type and prevents browsers
+                from doing MIME type sniffing
+              schema:
+                type: string
+                default: nosniff
+            Status Code:
+              description: The HTTP status code defining the error
+              schema:
+                type: integer
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                title: Error object
+                type: object
+                additionalProperties:
+                  type: object
+            application/json:
+              schema:
+                title: Error object
+                type: object
+                additionalProperties:
+                  type: object
+    head:
+      tags:
+      - ATM
+      description: Gets header information on the current set of `ATM` data
+      parameters:
+      - name: If-Modified-Since
+        in: header
+        description: Used for conditional request, to retrieve data only if modified
+          since a given date
+        schema:
+          type: string
+      - name: If-None-Match
+        in: header
+        description: Used for conditional request, to retrieve data only if the given
+          Etag value does not match
+        schema:
+          type: string
+      responses:
+        default:
+          description: No response
+          content:
+            application/prs.openbanking.opendata.v2.2+json:
+              schema:
+                title: No response
+                type: object
+            application/json:
+              schema:
+                title: No response
+                type: object
+components:
+  schemas:
+    Site:
+      type: object
+      properties:
+        Identification:
+          $ref: '#/components/schemas/Identification'
+        Name:
+          $ref: '#/components/schemas/Name'
+    StreetName:
+      type: object
+    OtherAccessibility:
+      required:
+      - Description
+      - Name
+      type: object
+      properties:
+        Code:
+          $ref: '#/components/schemas/Code'
+        Name:
+          $ref: '#/components/schemas/Name'
+        Description:
+          $ref: '#/components/schemas/Description'
+    SupportedCurrencies:
+      type: object
+    Description:
+      type: object
+    Accessibility:
+      type: object
+    Identification:
+      type: object
+    Latitude:
+      type: object
+    Name:
+      type: object
+    BrandName:
+      type: object
+    Branch:
+      type: object
+      properties:
+        Identification:
+          $ref: '#/components/schemas/Identification'
+    OtherLocationCategory:
+      required:
+      - Description
+      - Name
+      type: object
+      properties:
+        Code:
+          $ref: '#/components/schemas/Code'
+        Name:
+          $ref: '#/components/schemas/Name'
+        Description:
+          $ref: '#/components/schemas/Description'
+    CountrySubDivision:
+      type: object
+    GeographicCoordinates:
+      required:
+      - Latitude
+      - Longitude
+      type: object
+      properties:
+        Latitude:
+          $ref: '#/components/schemas/Latitude'
+        Longitude:
+          $ref: '#/components/schemas/Longitude'
+    AddressLine:
+      type: object
+    TownName:
+      type: object
+    ATM-info:
+      required:
+      - Identification
+      - Location
+      - SupportedCurrencies
+      type: object
+      properties:
+        Identification:
+          $ref: '#/components/schemas/Identification'
+        SupportedCurrencies:
+          $ref: '#/components/schemas/SupportedCurrencies'
+        Location:
+          $ref: '#/components/schemas/Location'
+        SupportedLanguages:
+          $ref: '#/components/schemas/SupportedLanguages'
+        ATMServices:
+          $ref: '#/components/schemas/ATMServices'
+        Accessibility:
+          $ref: '#/components/schemas/Accessibility'
+        Access24HoursIndicator:
+          $ref: '#/components/schemas/Access24HoursIndicator'
+        MinimumPossibleAmount:
+          $ref: '#/components/schemas/MinimumPossibleAmount'
+        Note:
+          $ref: '#/components/schemas/Note'
+        OtherAccessibility:
+          $ref: '#/components/schemas/OtherAccessibility'
+        OtherATMServices:
+          $ref: '#/components/schemas/OtherATMServices'
+        Branch:
+          $ref: '#/components/schemas/Branch'
+    Code:
+      type: object
+    Longitude:
+      type: object
+    Access24HoursIndicator:
+      type: object
+    OtherATMServices:
+      required:
+      - Description
+      - Name
+      type: object
+      properties:
+        Code:
+          $ref: '#/components/schemas/Code'
+        Name:
+          $ref: '#/components/schemas/Name'
+        Description:
+          $ref: '#/components/schemas/Description'
+    SupportedLanguages:
+      type: object
+    PostalAddress:
+      type: object
+      properties:
+        AddressLine:
+          $ref: '#/components/schemas/AddressLine'
+        BuildingNumber:
+          $ref: '#/components/schemas/BuildingNumber'
+        StreetName:
+          $ref: '#/components/schemas/StreetName'
+        TownName:
+          $ref: '#/components/schemas/TownName'
+        CountrySubDivision:
+          $ref: '#/components/schemas/CountrySubDivision'
+        Country:
+          $ref: '#/components/schemas/Country'
+        PostCode:
+          $ref: '#/components/schemas/PostCode'
+        GeoLocation:
+          $ref: '#/components/schemas/GeoLocation'
+    Brand:
+      required:
+      - ATM
+      - BrandName
+      type: object
+      properties:
+        BrandName:
+          $ref: '#/components/schemas/BrandName'
+        ATM:
+          $ref: '#/components/schemas/ATM-info'
+    MinimumPossibleAmount:
+      type: object
+    ATMServices:
+      type: object
+    Note:
+      type: object
+    LocationCategory:
+      type: object
+    BuildingNumber:
+      type: object
+    Country:
+      type: object
+    ATM:
+      required:
+      - Brand
+      type: object
+      properties:
+        Brand:
+          $ref: '#/components/schemas/Brand'
+      description: Environment of the ATM
+    GeoLocation:
+      required:
+      - GeographicCoordinates
+      type: object
+      properties:
+        GeographicCoordinates:
+          $ref: '#/components/schemas/GeographicCoordinates'
+    PostCode:
+      type: object
+    Location:
+      required:
+      - PostalAddress
+      type: object
+      properties:
+        LocationCategory:
+          $ref: '#/components/schemas/LocationCategory'
+        OtherLocationCategory:
+          $ref: '#/components/schemas/OtherLocationCategory'
+        Site:
+          $ref: '#/components/schemas/Site'
+        PostalAddress:
+          $ref: '#/components/schemas/PostalAddress'
+  securitySchemes:
+    api-key:
+      type: apiKey
+      name: api-key
+      in: header
