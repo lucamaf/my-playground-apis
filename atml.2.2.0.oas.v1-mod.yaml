@@ -3,7 +3,7 @@ openapi: 3.0.1
 info:
   title: Open-Data-API-ATM
   description: Latest Swagger specification for OpenData ATM Locator
-  version: v2.2
+  version: "2.2"
 paths:
   /atms:
     get:
@@ -42,43 +42,12 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                type: array
+                items:
+                  type: string
               examples:
                 test:
-                  value:
-                  - Brand:
-                    - BrandName: UK
-                      ATM:
-                      - Identification: AB461881
-                        SupportedLanguages:
-                        - en
-                        - fr
-                        - es
-                        - de
-                        ATMServices:
-                        - CashWithdrawal
-                        - PINChange
-                        - MobilePhoneTopUp
-                        - Balance
-                        - MiniStatement
-                        - CharityDonation
-                        SupportedCurrencies:
-                        - GBP
-                        MinimumPossibleAmount: "5"
-                        Branch:
-                          Identification: "402529"
-                        Location:
-                          Site:
-                            Name: ILKESTON I1
-                          PostalAddress:
-                            StreetName: 63 Bath Street
-                            TownName: ILKESTON
-                            Country: GB
-                            PostCode: DE7 8DD
-                            GeoLocation:
-                              GeographicCoordinates:
-                                Latitude: "52.9740105"
-                                Longitude: -1.3090999
+                  value: '[{"Brand":[{"BrandName":"UK","ATM":[{"Identification":"AB461881","SupportedLanguages":["en","fr","es","de"],"ATMServices":["CashWithdrawal","PINChange","MobilePhoneTopUp","Balance","MiniStatement","CharityDonation"],"SupportedCurrencies":["GBP"],"MinimumPossibleAmount":"5","Branch":{"Identification":"402529"},"Location":{"Site":{"Name":"ILKESTONI1"},"PostalAddress":{"StreetName":"63BathStreet","TownName":"ILKESTON","Country":"GB","PostCode":"DE78DD","GeoLocation":{"GeographicCoordinates":{"Latitude":"52.9740105","Longitude":"-1.3090999"}}}}}]}]}]'
         400:
           description: You have sent a request which could not be understood.
           headers:
