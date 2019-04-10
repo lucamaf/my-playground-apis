@@ -4,6 +4,9 @@ info:
   title: Open-Data-API-ATM
   description: Latest Swagger specification for OpenData ATM Locator
   version: "2.2"
+servers:
+- url: http://example.com/rest/Open-Data-API-ATM/2.2
+  description: ""
 paths:
   /atms:
     get:
