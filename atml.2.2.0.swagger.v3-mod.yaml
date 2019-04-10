@@ -392,10 +392,9 @@ definitions:
 securityDefinitions:
   oidc:
     type: apiKey
+    description: api key as access token
     name: Authorization
     in: header
-    flow: password
-    tokenUrl: http://http-sso.apps.wustenrot-91c2.openshiftworkshop.com/auth/realms/user1/protocol/openid-connect/token
 security:
 - oidc: []
 tags:
