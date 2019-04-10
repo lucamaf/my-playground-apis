@@ -391,12 +391,11 @@ definitions:
     type: object
 securityDefinitions:
   oidc:
-    type: oauth2
+    type: apiKey
+    name: Authorization
+    in: header
     flow: password
     tokenUrl: http://http-sso.apps.wustenrot-91c2.openshiftworkshop.com/auth/realms/user1/protocol/openid-connect/token
-    scopes:
-      openid: ""
-      scope-2: ""
 security:
 - oidc: []
 tags:
