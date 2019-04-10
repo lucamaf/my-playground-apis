@@ -44,10 +44,10 @@ paths:
               schema:
                 type: array
                 items:
-                  type: string
+                  $ref: '#/components/schemas/ATM'
               examples:
                 test:
-                  value: '[{"Brand":[{"BrandName":"UK","ATM":[{"Identification":"AB461881","SupportedLanguages":["en","fr","es","de"],"ATMServices":["CashWithdrawal","PINChange","MobilePhoneTopUp","Balance","MiniStatement","CharityDonation"],"SupportedCurrencies":["GBP"],"MinimumPossibleAmount":"5","Branch":{"Identification":"402529"},"Location":{"Site":{"Name":"ILKESTONI1"},"PostalAddress":{"StreetName":"63BathStreet","TownName":"ILKESTON","Country":"GB","PostCode":"DE78DD","GeoLocation":{"GeographicCoordinates":{"Latitude":"52.9740105","Longitude":"-1.3090999"}}}}}]}]}]'
+                  value: '[{"Brand":[{"BrandName":"Bank","ATM":[{"Identification":"XYZ1234","SupportedLanguages":["en","fr","es","de"],"ATMServices":["CashWithdrawal","PINChange","MobilePhoneTopUp","Balance","MiniStatement","CharityDonation"],"SupportedCurrencies":["GBP"],"MinimumPossibleAmount":"5","Branch":{"Identification":"402529"},"Location":{"Site":{"Name":"TOWN1"},"PostalAddress":{"StreetName":"BakerStreet","TownName":"Town","Country":"GB","PostCode":"DE78DD","GeoLocation":{"GeographicCoordinates":{"Latitude":"52.9740105","Longitude":"-1.3090999"}}}}}]}]}]'
         400:
           description: You have sent a request which could not be understood.
           headers:
